@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kriptografi Sederhana</title>
+</head>
+<body>
+
+    <h3>Kriptografi Nama</h3>
+    
+    <label>Nama:</label><br>
+    <input type="text" id="nama" value="Adin Wahyudin"><br><br>
+
+    <button onclick="enkripsi()">Proses Enkripsi</button>
+
+    <h4>Hasil:</h4>
+    <p><b>Caesar Cipher (Shift +3):</b> <span id="hasilCaesar"></span></p>
+    <p><b>Base64:</b> <span id="hasilBase64"></span></p>
+
+    <script>
+        function caesar(teks, shift) {
+            return teks.replace(/[a-z]/gi, function(c) {
+                let start = c <= 'Z' ? 65 : 97;
+                return String.fromCharCode((c.charCodeAt(0) - start + shift) % 26 + start);
+            });
+        }
+
+        function enkripsi() {
+            let input = document.getElementById('nama').value;
+            
+            // Enkripsi Caesar Cipher (geser 3)
+            document.getElementById('hasilCaesar').innerText = caesar(input, 3);
+            
+            // Enkripsi Base64
+            document.getElementById('hasilBase64').innerText = btoa(input);
+        }
+
+        // Jalankan saat pertama kali dibuka
+        enkripsi();
+    </script>
+
+</body>
+</html>
